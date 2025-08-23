@@ -17,7 +17,7 @@ Epson.set(custom_size=True, align='left', width=1, height=1)
 
 def print_40x30_sticker_to_thermal_printer(image_path):
     # marta_klistre is 320x264 pixels. In 203 DPI, this is 40x33 mm. There is some 
-    # room between the stickers which are 40x30mm. Make the image to cover the blank 
+    # room between the stickers themselves, which are 40x30mm. Make the image to cover the blank 
     # space as well when creating images. 
     try:
 
