@@ -1,5 +1,4 @@
 from p01_print_thermal import *;
-import p01_print_thermal
 from p02_image_generation import *;
 
 
