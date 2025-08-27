@@ -29,6 +29,16 @@ The printers I will be working on are:
 ### Operating System
 Windows 11
 
+## Usb
+If you want to use Usb in windows, open computer management - Universial Serial 
+Bus Controllers. Find correct printer and right click properties. Then under 
+Hardware Ids you can find the idVendor and idProduct. They look like this: 
+USB\VID_1FC9&PID_2016&REV_0200
+
+idVendor = 0x1FC9
+
+idProduct = 0x2016
+
 ### Notes
 The XP-T80Q was a little harder to set up because of driver availability, but once I got it working the print quality was exactly the same between the 2 printers.
 
@@ -51,3 +61,4 @@ TPU for the non-rigid.
 * Body8 - Extension Cap - TPU
 
 ## images
+The fonts out of the box are pretty bad for these printers. Therefore it's best to create small images with custom fonts and art of our choosing as all printers can print these. This is especially cruial when printing stickers as it gives us fine control of both height and width by adjusting the image size. DPI is 203 which means that a 40mm x 30mm sticker needs an image of 320px x 240px. Then we also adjust for the space between the stickers (if any). A gap of 6mm gives us a 40mm x 36mm image which in 203dpi translates to 320px x 288px
