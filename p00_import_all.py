@@ -7,6 +7,8 @@ from p02_image_generation import *;
 #     print(f"Printing to {printer}: {headline} - {text}")
 # # thermal_print(printer="EPSON TM-T20III Receipt", headline="Klær",text="Sokker",inspect_image_only=True)
 
-create_image(headline="Mette Marit",text="Det var en gang en prinsesse\npå Quarts. Hennes far, Jon, var\nikke konge av landet.")
+print(create_image(headline="Mette Marit",text="Det var en gang en prinsesse\npå Quart. Hennes far, Sven O, var\nikke konge."))
+
+
 
 
