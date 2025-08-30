@@ -22,17 +22,17 @@ def create_image(width=320, height=240, headline="", text="Normal Text", cut=Fal
         text_color = (0,0,0) # Black
 
         # --- Check how big the text is in the image. Consider implementing a warning if it's too big
-        # bbox = draw.textbbox((marginleft, margintop), headline, font=font_headline)
-        # bbox2 = draw.textbbox((marginleft, margintop + headlinesize), text, font=font_text)
-        # print(f'bbox (left,top,right,bottom): {bbox[0]}, {bbox[1]}, {bbox[2]}, {bbox[3]}, Total (width,height): {bbox[2] - bbox[0]},{bbox[3] - bbox[1]}')
-        # print('----')
-        # print(f'bbox2 (left,top,right,bottom): {bbox2[0]}, {bbox2[1]}, {bbox2[2]}, {bbox2[3]}, Total (width,height): {bbox2[2] - bbox2[0]},{bbox2[3] - bbox2[1]}')
+        bbox = draw.textbbox((marginleft, margintop), headline, font=font_headline)
+        bbox2 = draw.textbbox((marginleft, margintop + headlinesize), text, font=font_text)
+        print(f'bbox (left,top,right,bottom): {bbox[0]}, {bbox[1]}, {bbox[2]}, {bbox[3]}, Total (width,height): {bbox[2] - bbox[0]},{bbox[3] - bbox[1]}')
+        print('----')
+        print(f'bbox2 (left,top,right,bottom): {bbox2[0]}, {bbox2[1]}, {bbox2[2]}, {bbox2[3]}, Total (width,height): {bbox2[2] - bbox2[0]},{bbox2[3] - bbox2[1]}')
         # ---
 
         if headline:
             draw.text((marginleft, margintop), headline, font=font_headline, fill=text_color)
         if text:
-            draw.text((marginleft, margintop + font_headline_size), text, font=font_text, fill=text_color)
+            draw.text((marginleft, margintop + bbox[3] - bbox[1] + 10), text, font=font_text, fill=text_color)
 
         # Draw emojis
         # draw.text((marginleft, ((bbox[3] - bbox[1]) + (bbox2[3] - bbox2[1]) + margintop + 20 )), "🧯🧯🧯", font=font_emoji, fill=text_color)

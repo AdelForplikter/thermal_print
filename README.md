@@ -20,6 +20,8 @@ The goal with this repository is to be able to print different types of thermal 
 
 * [escpos database - config examples](https://github.com/receipt-print-hq/escpos-printer-db/blob/master/data/profile/ITPP047.yml)
 
+* [XP-T80Q Driver](https://www.xprintertech.com/drivers-2)
+
 ## Hardware
 ### Printers
 The printers I will be working on are: 
@@ -40,7 +42,7 @@ idVendor = 0x1FC9
 idProduct = 0x2016
 
 ### Notes
-The XP-T80Q was a little harder to set up because of driver availability, but once I got it working the print quality was exactly the same between the 2 printers.
+The XP-T80Q was a little harder to set up because of driver availability. Out of the box, the printers seemed exactly alike regarding print quality. However, the Epson TM-T20III comes with a print utility that lets you turn down the speed from 13 to 1 and also adjust the print density from 4(default) to 7(maximum). This significantly improved the prints on sticker labels that were barely readable using the default settings on both printers. 
 
 ### 3d print
 Since the smaller width labels don't fit the 80mm printers, I made a universal spring loaded fixture to clamp them to the left wall of the printers. 
