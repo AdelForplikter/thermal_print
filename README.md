@@ -23,23 +23,11 @@ The goal with this repository is to be able to print different types of thermal 
 * [XP-T80Q Driver](https://www.xprintertech.com/drivers-2)
 
 ## Hardware
+
 ### Printers
 The printers I will be working on are: 
 * Epson TM-T20III
 * XP-T80Q (Cheap Printer from Aliexpress)
-
-### Operating System
-Windows 11
-
-## Usb
-If you want to use Usb in windows, open computer management - Universial Serial 
-Bus Controllers. Find correct printer and right click properties. Then under 
-Hardware Ids you can find the idVendor and idProduct. They look like this: 
-USB\VID_1FC9&PID_2016&REV_0200
-
-idVendor = 0x1FC9
-
-idProduct = 0x2016
 
 ### Notes
 The XP-T80Q was a little harder to set up because of driver availability. Out of the box, the printers seemed exactly alike regarding print quality. However, the Epson TM-T20III comes with a print utility that lets you turn down the speed from 13 to 1 and also adjust the print density from 4(default) to 7(maximum). This significantly improved the prints on sticker labels that were barely readable using the default settings on both printers. 
@@ -62,5 +50,35 @@ TPU for the non-rigid.
 * Body7 - Sliding Ring - TPU
 * Body8 - Extension Cap - TPU
 
+## Software
+
+### Operating System
+Windows 11
+
+### Python
+pwsh> python -m venv ./venv
+
+pwsh> .\venv\Scripts\activate
+
+pwsh> pip install pyusb # For usb printer
+
+pwsh> pip install pillow # for image generation
+
+pwsh> pip install python-escpos # Epson Standard Code for Point of Sale. 
+
+### Github
+The project lives here: [https://github.com/AdelForplikter/thermal_print.git](https://github.com/AdelForplikter/thermal_print.git)
+
+### Usb
+If you want to use Usb in windows, open computer management - Universial Serial 
+Bus Controllers. Find correct printer and right click properties. Then under 
+Hardware Ids you can find the idVendor and idProduct. They look like this: 
+USB\VID_1FC9&PID_2016&REV_0200
+
+idVendor = 0x1FC9
+
+idProduct = 0x2016
+
 ## images
 The fonts out of the box are pretty bad for these printers. Therefore it's best to create small images with custom fonts and art of our choosing as all printers can print these. This is especially cruial when printing stickers as it gives us fine control of both height and width by adjusting the image size. DPI is 203 which means that a 40mm x 30mm sticker needs an image of 320px x 240px. Then we also adjust for the space between the stickers (if any). A gap of 6mm gives us a 40mm x 36mm image which in 203dpi translates to 320px x 288px
+
