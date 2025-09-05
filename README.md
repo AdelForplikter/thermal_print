@@ -52,22 +52,29 @@ TPU for the non-rigid.
 
 ## Software
 
+### Github
+The project lives here: [https://github.com/AdelForplikter/thermal_print.git](https://github.com/AdelForplikter/thermal_print.git)
+
 ### Operating System
 Windows 11
 
+
+
 ### Python
-pwsh> python -m venv ./venv
+    pwsh> python -m venv ./venv
 
-pwsh> .\venv\Scripts\activate
+    pwsh> .\venv\Scripts\activate
 
-pwsh> pip install pyusb # For usb printer
+    pwsh> pip install python-escpos\[all\] # Epson Standard Code for Point of Sale. 
 
-pwsh> pip install pillow # for image generation
+    pwsh> pip install pyusb # USB printer
 
-pwsh> pip install python-escpos # Epson Standard Code for Point of Sale. 
+    pwsh> pip install pillow # Image generation
 
-### Github
-The project lives here: [https://github.com/AdelForplikter/thermal_print.git](https://github.com/AdelForplikter/thermal_print.git)
+    pwsh> pip install flask # Exposing web interface
+
+    pwsh> pip install gunicorn # Web Server Gateway Interface HTTP server (WSGI)
+
 
 ### Usb
 If you want to use Usb in windows, open computer management - Universial Serial 
@@ -82,3 +89,46 @@ idProduct = 0x2016
 ## images
 The fonts out of the box are pretty bad for these printers. Therefore it's best to create small images with custom fonts and art of our choosing as all printers can print these. This is especially cruial when printing stickers as it gives us fine control of both height and width by adjusting the image size. DPI is 203 which means that a 40mm x 30mm sticker needs an image of 320px x 240px. Then we also adjust for the space between the stickers (if any). A gap of 6mm gives us a 40mm x 36mm image which in 203dpi translates to 320px x 288px
 
+### Docker
+We need to pass usb from windows to wsl to use it in docker
+
+[https://learn.microsoft.com/nb-no/windows/wsl/connect-usb#attach-a-usb-device](https://learn.microsoft.com/nb-no/windows/wsl/connect-usb#attach-a-usb-device)
+
+    pwsh> winget install usbipd
+
+    pwsh> usbipd list
+
+    pwsh> usbipd bind --busid 1-3
+
+    pwsh> usbipd bind --busid 1-7
+
+    pwsh> usbipd attach --wsl --busid 1-3
+
+    pwsh> usbipd attach --wsl --busid 1-7
+
+    wsl@yellowhand: lsusb
+
+> Bus 001 Device 003: ID 1fc9:2016 NXP Semiconductors USB Printer Port
+
+> Bus 001 Device 002: ID 04b8:0e28 Seiko Epson Corp. TM-T20III
+
+Now wsl has access to the USB. The only thing remaining is passing it to the docker container. The --privileged is necessary or you won't get the access you need to the usb. Be aware that this may be a security risk. 
+
+    wsl@yellowhand: docker run -i -t --privileged -v /dev/bus/usb:/dev/bus/usb -p 5000:5000 flaskapp
+
+I also switched from using the Win32Raw driver to Usb in app.py
+
+The fonts were used directly from the c:\windows\fonts-directory earlier and were moved to ./static/fonts to be available from the docker-image. app.py was also updated. 
+
+#### Dockerfile
+To rebuild the docker image: 
+
+    docker build -t flaskapp
+
+#### compose.yaml
+
+Added a compose.yaml:
+
+    docker compose up -d
+    
+    docker compose down

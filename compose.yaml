@@ -1,0 +1,12 @@
+name: flaskapp
+services:
+    flaskapp:
+        stdin_open: true
+        tty: true
+        privileged: true
+        volumes:
+            - /dev/bus/usb:/dev/bus/usb
+        ports:
+            - 5000:5000
+        image: flaskapp
+        restart: unless-stopped

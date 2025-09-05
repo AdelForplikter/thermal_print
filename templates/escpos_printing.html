@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EscPos Printing</title>
+</head>
+<body>
+    <h1>Create Image and Print Sticker</h1>
+    
+    <form action="/submit" method="post">
+        <!-- Create Image Parameters -->
+        <h2>Create Image</h2>
+        <label for="width">Width (default 320):</label>
+        <input type="number" id="width" name="width" value="320"><br><br>
+
+        <label for="height">Height (default 240):</label>
+        <input type="number" id="height" name="height" value="240"><br><br>
+
+        <label for="headline">Headline:</label>
+        <input type="text" id="headline" name="headline" value="Arne Treholt"><br><br>
+
+        <label for="text">Text (default "Normal Text"):</label>
+        <input type="text" id="text" name="text" value="The spy who came in from the cold"><br><br>
+
+        <label for="cut">Cut (default False):</label>
+        <select id="cut" name="cut">
+            <option value="True">True</option>
+            <option value="False" selected >False</option>
+        </select><br><br>
+
+        <label for="headlinesize">Headline Size (default 32):</label>
+        <input type="number" id="headlinesize" name="headlinesize" value="32"><br><br>
+
+        <label for="textsize">Text Size (default 22):</label>
+        <input type="number" id="textsize" name="textsize" value="22"><br><br>
+
+        <label for="marginleft">Margin Left (default 10):</label>
+        <input type="number" id="marginleft" name="marginleft" value="10"><br><br>
+
+        <label for="margintop">Margin Top (default 5):</label>
+        <input type="number" id="margintop" name="margintop" value="5"><br><br>
+
+        <!-- Print Sticker to Thermal Printer Parameters -->
+        <h2>Print Sticker to Thermal Printer</h2>
+        <label for="printer">Printer (default 1):</label>
+        <input type="number" id="printer" name="printer" value="2"><br><br>
+
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

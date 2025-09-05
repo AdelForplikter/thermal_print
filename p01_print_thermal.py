@@ -18,8 +18,11 @@ def print_sticker_to_thermal_printer(printer=1, image_path=None, cut=False):
         if cut:
             Epson._raw(b'\x1D\x56\x00') # Cutting. Hard to implement a precise cut
         print("success")
+        return
+    
 
     except Exception as e:
         print(f"ERROR printing to thermal printer: {str(e)}")
+        return
 
 
